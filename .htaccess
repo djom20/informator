@@ -1,0 +1,13 @@
+RewriteEngine On
+
+#Reescribir en relacion a los Controladores Unicamente:
+RewriteRule ^([a-zA-Z0-9_]+)$ index.php?controller=$1&action=index
+
+#Reescribir en relacion a los Controladores Unicamente con variables GET:
+RewriteRule ^([a-zA-Z0-9_]+)\.json\?(.*)$ index.php?controller=$1&action=index&$2
+
+#Reescribir tomando en consideracion Controladores y Acciones:
+RewriteRule ^([a-zA-Z0-9_]+)/([a-zA-Z0-9_]*)\.json$ index.php?controller=$1&action=$2
+
+#Tomar variables pasadas por GET en la URL:
+RewriteRule ^([a-zA-Z0-9_]+)/([a-zA-Z0-9_]+)\.json\?(.*)$ index.php?controller=$1&action=$2&$3

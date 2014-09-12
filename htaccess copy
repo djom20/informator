@@ -1,0 +1,44 @@
+#-------------------------------------------------------------------------------
+#                           Activating CACHE
+#-------------------------------------------------------------------------------
+ExpiresActive On
+ExpiresDefault A0
+
+Header unset Pragma
+FileETag None
+Header unset ETag
+ 
+# 1 YEAR
+<FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav)$">
+ExpiresDefault A29030400
+</FilesMatch>
+
+# cache images/pdf docs for 10 days
+<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+Header set Cache-Control "max-age=864000, public, must-revalidate"
+ExpiresDefault A864000
+</FilesMatch>
+ 
+# 3 HOUR
+<FilesMatch "\.(txt|xml|js|css)$">
+ExpiresDefault A604800
+</FilesMatch>
+
+#-------------------------------------------------------------------------------
+#                         Activating Accept-Encoding
+#-------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|xml|gz|html)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
+
+#-------------------------------------------------------------------------------
+#                      Activating GZIP Compression
+#-------------------------------------------------------------------------------
+
+# remove browser bugs
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+Header append Vary User-Agent

@@ -1,0 +1,5 @@
+RewriteEngine On
+
+#no permitir acceso a estas rutas a menos que sean archivos y contengan punto
+RewriteRule ^(imgs|capturas)/?$ /GPSConnect/Resource/index.html
+RewriteRule ^capturas/[0-9]+/?$ /GPSConnect/Resource/index.html

@@ -1,0 +1,45 @@
+http://www.jourmoly.com.ar/introduccion-a-mvc-con-php-segunda-parte/
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="Scripts/js/Ajax.js"></script>
+        <script type="text/javascript">
+            function cargar(respuesta) {
+                alert(respuesta);
+            }
+            
+            function error (val, respuesta) {
+                if(val == 404) {
+                    alert("error " + val + ": " + respuesta);
+                }
+            }
+            
+            function init() {
+                var ajax1 = new Ajax();
+                var ajax2 = new Ajax();
+                var ajax3 = new Ajax();
+                ajax1.loadOnFunction("hola.php", null, cargar, null);
+                ajax2.loadOnContainer("hola.php", null, document.getElementById('pag'));
+                
+                var array = new Array();
+                array['uno'] = 1;
+                array['dos'] = 2;
+                
+                var doc = document.getElementById('otro');
+                for(var i=0; i<array.length; i++) {
+                    alert(array[i]);
+                    doc.innerHTML += array[i];
+                }
+            }
+        </script>
+        <title></title>
+    </head>
+    <body onload="javascript: init();">
+        <input type="text" id="algo" />
+        <div id="pag"></div>
+        <div id="otro"></div>
+    </body>
+</html>
+
