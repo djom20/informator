@@ -31,8 +31,15 @@ class AlarmController extends ControllerBase {
     }
 
     public function getHistory(){
-        $result = $this->client->describeAlarmHistory();
-        HTTP::JSON(Partial::createResponse(HTTP::Value(200), $result['AlarmHistoryItems']));
+        // if(!empty($this->post['AlarmName'])) {
+        //     try{
+        //         $result = $this->client->describeAlarmHistory('AlarmName' => $this->post['AlarmName']);
+        //         HTTP::JSON(Partial::createResponse(HTTP::Value(200), $result['AlarmHistoryItems']));
+        //     }catch(Exception $e){
+        //         HTTP::JSON(Partial::createResponse(HTTP::Value(400), 'No existe la alarma'));
+        //     }
+        // }
+        // HTTP::JSON(400);
     }
 
     public function add () {
