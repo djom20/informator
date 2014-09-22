@@ -39,10 +39,7 @@ class SnsController extends ControllerBase {
                 ));
                 HTTP::JSON(200);
             }catch(Exception $e){
-                echo $this->post['TopicArn'].'<br>';
-                echo $this->post['Endpoint'].'<br>';
                 HTTP::JSON(Partial::createResponse(HTTP::Value(500), $e->getMessage()));
-                // HTTP::JSON(500);
             }
         }
         HTTP::JSON(400);
@@ -56,7 +53,7 @@ class SnsController extends ControllerBase {
                 ));
                 HTTP::JSON(200);
             }catch(Exception $e){
-                HTTP::JSON(500);
+                HTTP::JSON(Partial::createResponse(HTTP::Value(500), $e->getMessage()));
             }
         }
         HTTP::JSON(400);

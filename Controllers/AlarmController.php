@@ -34,10 +34,10 @@ class AlarmController extends ControllerBase {
     public function getHistory(){
         if(!empty($this->post['AlarmName'])) {
             try{
-                $result = $this->client->describeAlarmHistory('AlarmName' => $this->post['AlarmName']);
+                // $result = $this->client->describeAlarmHistory('AlarmName' => $this->post['AlarmName']);
                 HTTP::JSON(Partial::createResponse(HTTP::Value(200), $result['AlarmHistoryItems']));
             }catch(Exception $e){
-                HTTP::JSON(Partial::createResponse(HTTP::Value(400), 'No existe la alarma'));
+                HTTP::JSON(Partial::createResponse(HTTP::Value(400), $e->getMessage()));
             }
         }
         HTTP::JSON(400);
@@ -74,40 +74,11 @@ class AlarmController extends ControllerBase {
                 ));
                 HTTP::JSON(200);
             }catch(Exception $e){
-                HTTP::JSON(Partial::createResponse(HTTP::Value(400), $e->getMessage());
+                HTTP::JSON(Partial::createResponse(HTTP::Value(400), $e->getMessage()));
             }
         }
         HTTP::JSON(400);
     }
-
-    // public function enableAlarm(){
-    //     $result = $this->client->enableAlarmActions(array(
-    //         // AlarmNames is required
-    //         'AlarmNames' => array('awsec2-i-b1e6569c-CPU-Utilization')
-    //     ));
-    //     HTTP::JSON(200);
-    // }
-
-    // public function disableAlarm(){
-    //     $result = $this->client->disableAlarmActions(array(
-    //         // AlarmNames is required
-    //         'AlarmNames' => array('awsec2-i-b1e6569c-CPU-Utilization')
-    //     ));
-    //     HTTP::JSON(200);
-    // }
-
-    // public function changeState(){
-    //     $result = $this->client->setAlarmState(array(
-    //         // AlarmName is required
-    //         'AlarmName' => 'awsec2-i-b1e6569c-CPU-Utilization',
-    //         // StateValue is required
-    //         'StateValue' => 'INSUFFICIENT_DATA', /* (string: OK | ALARM | INSUFFICIENT_DATA ) */
-    //         // StateReason is required
-    //         'StateReason' => 'State changed to ALARM at 2014/09/11'
-    //     ));
-        
-    //     HTTP::JSON(Partial::createResponse(HTTP::Value(200), $result));
-    // }
 
     public function delete () {
         if(!empty($this->delete['AlarmName'])) {
@@ -117,7 +88,7 @@ class AlarmController extends ControllerBase {
                 ));
                 HTTP::JSON(200);
             }catch(Exception $e){
-                HTTP::JSON(Partial::createResponse(HTTP::Value(400), 'No existe la alarma'));
+                HTTP::JSON(Partial::createResponse(HTTP::Value(400), $e->getMessage()));
             }
         }
         HTTP::JSON(400);
