@@ -16,7 +16,8 @@ class InstanceController extends ControllerBase {
             HTTP::JSON(401);
         }
         
-        $this->client = Ec2Client::factory(array(
+        $this->client = Ec2Client::factory(
+            array(
                 'key' => $_SESSION['user']['accesskey'],
                 'secret' => $_SESSION['user']['secretkey'],
                 'region' => 'us-east-1'

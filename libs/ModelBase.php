@@ -89,7 +89,8 @@ class ModelBase {
         $tmp2 = "";
         foreach ($rows1 as $row1) {
             if ($values[":{$row1[0]}"]) {
-                $params[":{$row1[0]}"] = urldecode($values[":{$row1[0]}"]);
+                $params[":{$row1[0]}"] = $values[":{$row1[0]}"];
+                // $params[":{$row1[0]}"] = urldecode($values[":{$row1[0]}"]);
                 $tmp1 .= "{$row1[0]}, ";
                 $tmp2 .= ":{$row1[0]}, ";
             }
@@ -102,7 +103,7 @@ class ModelBase {
         $result2 = $this->db->prepare($query2);
         $result2->execute($params);
 
-        return $result2->rowCount() > 0;
+        return $values;
     }
 
     public function insertorupdate($values = array()) {
@@ -118,7 +119,8 @@ class ModelBase {
         $tmp3 = "";
         foreach ($rows1 as $row1) {
             if (!empty($values[":{$row1[0]}"])) {
-                $params[":{$row1[0]}"] = urldecode($values[":{$row1[0]}"]);
+                $params[":{$row1[0]}"] = $values[":{$row1[0]}"];
+                // $params[":{$row1[0]}"] = urldecode($values[":{$row1[0]}"]);
                 $tmp3 .= "{$row1[0]} = :{$row1[0]}, ";
                 $tmp2 .= ":{$row1[0]}, ";
                 $tmp1 .= "{$row1[0]}, ";
@@ -147,7 +149,8 @@ class ModelBase {
         $str1 = "";
         foreach ($rows1 as $row1) {
             if ($values[":{$row1[0]}"]) {
-                $params[":{$row1[0]}"] = urldecode($values[":{$row1[0]}"]);
+                $params[":{$row1[0]}"] = $values[":{$row1[0]}"];
+                // $params[":{$row1[0]}"] = urldecode($values[":{$row1[0]}"]);
                 $str1 .= "{$row1[0]} = :{$row1[0]}, ";
             }
         }

@@ -56,6 +56,7 @@ class AccountController extends ControllerBase {
         );
         
         $scheduler = $this->getModel('scheduler_group');
+
         $result = $client->DescribeInstances();
         $response = array ();
         
@@ -129,7 +130,7 @@ class AccountController extends ControllerBase {
     function update () {
         $_filled = Partial::_filled($this->put, array ('idaccount'));
         if($_filled) {
-            $params = Partial::prefix($this->put, ':');
+            $params = Partial::prefix_nodecode($this->put, ':');
             
             $this->getModel('account')->update($this->put['idaccount'], $params);
             HTTP::JSON(200);
@@ -139,9 +140,9 @@ class AccountController extends ControllerBase {
     }
     
     function register () {
-        $_filled = Partial::_filled($this->post, array ('idaccount', 'name', 'secretkey', 'accesskey'));
+        $_filled = Partial::_filled($this->post, array ('idaccount', 'name', 'email', 'secretkey', 'accesskey'));
         if($_filled) {
-            $params = Partial::prefix($this->post, ':');
+            $params = Partial::prefix_nodecode($this->post, ':');
             $account = $this->getModel('account');
             $account->insert($params);
             

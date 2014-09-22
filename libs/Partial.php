@@ -111,6 +111,15 @@ class Partial {
         return $tmp;
     }
 
+    public static function prefix_nodecode($vars, $prefix) {
+        $tmp = array();
+        foreach ($vars as $key => $value) {
+            $tmp["{$prefix}{$key}"] = $value;
+        }
+
+        return $tmp;
+    }
+
     public static function loadPage($url) {
         $header = array (
             "ACCEPT:{$_SERVER['HTTP_ACCEPT']}",

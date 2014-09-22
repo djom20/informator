@@ -13,15 +13,16 @@
     
     // Vars URL
     // $config->set('BaseUrl', 'localhost/informator');
-    $config->set('BaseUrl', 'http://54.85.172.192/informator');
+    // $config->set('BaseUrl', 'http://54.85.172.192/informator');
+    $config->set('BaseUrl', 'http://devconsole.soluntech.com/informator');
 
     // Data Base Configuration
     $config->set('driver', 'mysql');
     $config->set('dbhost', 'localhost');
     $config->set('dbname', 'dashboard');
     $config->set('dbuser', 'root');
-    $config->set('dbpass', 'S0lunt3ch');
-    // $config->set('dbpass', 'q6td9.9fmq3');
+    // $config->set('dbpass', 'S0lunt3ch');
+    $config->set('dbpass', 'q6td9.9fmq3');
 
     // Another Owner Configurations
     $config->set('MDKey', 'ba79c7513cc983ae735fe9f66f100889');
